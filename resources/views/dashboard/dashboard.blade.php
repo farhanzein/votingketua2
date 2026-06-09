@@ -54,14 +54,79 @@
             </div>
         </div>
 
+        <!-- Status Sesi Voting -->
+        <div class="session-card {{ $session && $session->status == 'buka' ? 'buka' : 'tutup' }}">
+            <div class="session-left">
+                <div class="session-icon">
+                    <i class="bi bi-calendar-event"></i>
+                </div>
+                <div>
+                    <p class="session-label">Status Sesi Voting</p>
+                    @if($session)
+                        <h3 class="session-status">
+                            {{ $session->status == 'buka' ? 'Sedang Berlangsung' : 'Belum / Sudah Selesai' }}
+                        </h3>
+                        <p class="session-date">
+                            <i class="bi bi-calendar-range"></i>
+                            {{ \Carbon\Carbon::parse($session->tanggal_mulai)->format('d M Y') }}
+                            &nbsp;—&nbsp;
+                            {{ \Carbon\Carbon::parse($session->tanggal_selesai)->format('d M Y') }}
+                        </p>
+                    @else
+                        <h3 class="session-status">Belum ada sesi</h3>
+                        <p class="session-date">Sesi voting belum dikonfigurasi</p>
+                    @endif
+                </div>
+            </div>
+            <div class="session-badge">
+                @if($session && $session->status == 'buka')
+                    <span class="pill buka"><i class="bi bi-circle-fill"></i> Dibuka</span>
+                @else
+                    <span class="pill tutup"><i class="bi bi-circle"></i> Ditutup</span>
+                @endif
+            </div>
+        </div>
+
+        <!-- Statistik (hanya admin & super_admin) -->
+        @if(auth()->user()->role != 'voter')
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon blue"><i class="bi bi-people-fill"></i></div>
+                <div>
+                    <p class="stat-label">Total Voter</p>
+                    <h3 class="stat-value">{{ $totalVoter }}</h3>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon green"><i class="bi bi-check-circle-fill"></i></div>
+                <div>
+                    <p class="stat-label">Sudah Voting</p>
+                    <h3 class="stat-value">{{ $sudahVoting }}</h3>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon orange"><i class="bi bi-hourglass-split"></i></div>
+                <div>
+                    <p class="stat-label">Belum Voting</p>
+                    <h3 class="stat-value">{{ $belumVoting }}</h3>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon purple"><i class="bi bi-ballot-fill"></i></div>
+                <div>
+                    <p class="stat-label">Total Suara</p>
+                    <h3 class="stat-value">{{ $totalSuara }}</h3>
+                </div>
+            </div>
+        </div>
+        @endif
+
         <!-- Menu Cards -->
         <div class="menu-grid">
 
             @if(auth()->user()->role == 'voter')
             <a href="/voting" class="menu-card">
-                <div class="menu-icon blue">
-                    <i class="bi bi-hand-index-thumb"></i>
-                </div>
+                <div class="menu-icon blue"><i class="bi bi-hand-index-thumb"></i></div>
                 <div>
                     <h3>Mulai Voting</h3>
                     <p>Berikan suara kamu sekarang</p>
@@ -71,9 +136,7 @@
             @endif
 
             <a href="/hasil" class="menu-card">
-                <div class="menu-icon green">
-                    <i class="bi bi-bar-chart"></i>
-                </div>
+                <div class="menu-icon green"><i class="bi bi-bar-chart"></i></div>
                 <div>
                     <h3>Hasil Voting</h3>
                     <p>Lihat hasil voting sementara</p>
@@ -83,20 +146,15 @@
 
             @if(auth()->user()->role == 'admin')
             <a href="/kandidat" class="menu-card">
-                <div class="menu-icon purple">
-                    <i class="bi bi-person-badge"></i>
-                </div>
+                <div class="menu-icon purple"><i class="bi bi-person-badge"></i></div>
                 <div>
                     <h3>Kelola Kandidat</h3>
                     <p>Tambah atau hapus kandidat</p>
                 </div>
                 <i class="bi bi-chevron-right arrow"></i>
             </a>
-
             <a href="/voter" class="menu-card">
-                <div class="menu-icon orange">
-                    <i class="bi bi-people"></i>
-                </div>
+                <div class="menu-icon orange"><i class="bi bi-people"></i></div>
                 <div>
                     <h3>Kelola Voter</h3>
                     <p>Manajemen data pemilih</p>
@@ -107,20 +165,15 @@
 
             @if(auth()->user()->role == 'super_admin')
             <a href="/admin" class="menu-card">
-                <div class="menu-icon red">
-                    <i class="bi bi-shield-lock"></i>
-                </div>
+                <div class="menu-icon red"><i class="bi bi-shield-lock"></i></div>
                 <div>
                     <h3>Kelola Admin</h3>
                     <p>Manajemen akun admin</p>
                 </div>
                 <i class="bi bi-chevron-right arrow"></i>
             </a>
-
             <a href="/voting-session" class="menu-card">
-                <div class="menu-icon blue">
-                    <i class="bi bi-calendar-check"></i>
-                </div>
+                <div class="menu-icon blue"><i class="bi bi-calendar-check"></i></div>
                 <div>
                     <h3>Sesi Voting</h3>
                     <p>Atur jadwal dan status voting</p>

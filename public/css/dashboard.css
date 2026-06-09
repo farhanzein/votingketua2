@@ -208,3 +208,133 @@ body {
     color: #d1d5db;
     font-size: 0.9rem;
 }
+/* Statistik */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    padding: 1rem 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.stat-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.stat-icon.blue   { background: #eff6ff; color: #2563eb; }
+.stat-icon.green  { background: #f0fdf4; color: #16a34a; }
+.stat-icon.orange { background: #fff7ed; color: #ea580c; }
+.stat-icon.purple { background: #f5f3ff; color: #7c3aed; }
+
+.stat-label {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+.stat-value {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+}
+
+/* Session Card */
+.session-card {
+    border-radius: 12px;
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+}
+
+.session-card.buka {
+    background: #f0fdf4;
+    border: 1.5px solid #bbf7d0;
+}
+
+.session-card.tutup {
+    background: #f9fafb;
+    border: 1.5px solid #e5e7eb;
+}
+
+.session-left {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+}
+
+.session-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #2563eb;
+    flex-shrink: 0;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.session-label {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin: 0 0 0.1rem;
+}
+
+.session-status {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 0.2rem;
+}
+
+.session-date {
+    font-size: 0.8rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+.pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.875rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.pill.buka {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.pill.tutup {
+    background: #f3f4f6;
+    color: #6b7280;
+}
+
+@media (max-width: 600px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+}

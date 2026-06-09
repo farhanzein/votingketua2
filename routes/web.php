@@ -7,6 +7,7 @@ use App\Http\Controllers\VotingController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\VoterController;
 use App\Http\Controllers\VotingSessionController;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', [AuthController::class, 'showLogin']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -14,9 +15,8 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/register', [AuthController::class, 'showRegister']);
 Route::post('/register', [AuthController::class, 'register']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard.dashboard');
-})->middleware('auth');
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware('auth');
 
 Route::get('/logout', [AuthController::class, 'logout']);
 

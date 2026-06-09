@@ -24,14 +24,19 @@ class KandidatController extends Controller
     // simpan kandidat
     public function store(Request $request)
     {
-        $foto = $request->file('foto');
-        $namaFoto = time() . '_' . $foto->getClientOriginalName();
-        $foto->move(public_path('foto_kandidat'), $namaFoto);
+        $namaFoto = null;
+
+        if ($request->hasFile('foto') && $request->file('foto')->isValid()) {
+            $foto = $request->file('foto');
+            $namaFoto = time() . '_' . $foto->getClientOriginalName();
+            $foto->move(public_path('foto_kandidat'), $namaFoto);
+        }
+
         Kandidat::create([
             'nama' => $request->nama,
             'foto' => $namaFoto,
             'visi' => $request->visi,
-            'misi' => $request->misi
+            'misi' => $request->misi,
         ]);
 
         return redirect('/kandidat');
