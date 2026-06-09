@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Tambah Kandidat</title>
 </head>
+
 <body>
     <a href="/kandidat">Kembali</a>
 
@@ -15,7 +17,9 @@
         <input type="text" name="nama" placeholder="Nama Kandidat">
         <br><br>
 
-        <input type="text" name="foto" placeholder="Nama File Foto">
+
+        <label>Upload Foto</label><br>
+        <input type="file" name="foto" accept="image/*">
         <br><br>
 
         <textarea name="visi" placeholder="Visi"></textarea>
@@ -30,4 +34,5 @@
     </form>
 
 </body>
+
 </html>
