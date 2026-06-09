@@ -1,63 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
 
-    <h1>Dashboard</h1>
+<body class="bg-light">
 
-    <hr>
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container-fluid">
 
-    <h3>Selamat Datang, {{ auth()->user()->name }}</h3>
+            <span class="navbar-brand mb-0 h1">
+                E-Voting Ketua
+            </span>
 
-    <p>Email : {{ auth()->user()->email }}</p>
+            <a href="/logout" class="btn btn-danger">
+                Logout
+            </a>
 
-    <p>Role : {{ auth()->user()->role }}</p>
-    <!--ini admin-->
-    @if(auth()->user()->role == 'admin')
+        </div>
+    </nav>
 
-    <h3>Anda login sebagai Admin</h3>
+    <div class="container mt-4">
 
-    @endif
-    @if(auth()->user()->role == 'admin')
+        <!-- Card Welcome -->
+        <div class="card shadow-sm">
+            <div class="card-body">
 
-    <hr>
+                <h3>
+                    Selamat Datang,
+                    {{ auth()->user()->name }}
+                </h3>
 
-    <h3>Menu Admin</h3>
+                <p>Email : {{ auth()->user()->email }}</p>
 
-    <a href="/kandidat">Kelola Kandidat</a>
+                <p>Role : {{ auth()->user()->role }}</p>
 
-    @endif
-    <!-- sampai sini -->
-    <p>
-        Status Voting :
-        @if(auth()->user()->hak_suara == 1)
-            Belum Voting
-        @else
-            Sudah Voting
+                <p>
+                    Status Voting :
+
+                    @if(auth()->user()->hak_suara == 1)
+
+                        <span class="badge bg-success">
+                            Belum Voting
+                        </span>
+
+                    @else
+
+                        <span class="badge bg-danger">
+                            Sudah Voting
+                        </span>
+
+                    @endif
+                </p>
+
+            </div>
+        </div>
+
+        <div class="row mt-4">
+
+            <!-- User -->
+            @if(auth()->user()->role == 'voter')
+
+                <div class="col-md-6">
+
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+
+                            <h4>Voting</h4>
+
+                            <p>
+                                Klik tombol di bawah untuk mulai voting.
+                            </p>
+
+                            <a href="/voting" class="btn btn-primary">
+                                Mulai Voting
+                            </a>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            @endif
+
+            <!-- Hasil -->
+            <div class="col-md-6">
+
+                <div class="card shadow-sm">
+                    <div class="card-body">
+
+                        <h4>Hasil Voting</h4>
+
+                        <p>
+                            Lihat hasil voting sementara.
+                        </p>
+
+                        <a href="/hasil" class="btn btn-success">
+                            Lihat Hasil
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Admin -->
+        @if(auth()->user()->role == 'admin')
+
+            <div class="card mt-4 shadow-sm">
+                <div class="card-body">
+
+                    <h4>Menu Admin</h4>
+
+                    <a href="/kandidat" class="btn btn-dark">
+                        Kelola Kandidat
+                    </a>
+                    <a href="/voter" class="btn btn-secondary">
+                        Kelola Voter
+                    </a>
+
+                </div>
+            </div>
+
         @endif
-    </p>
-    
-    <hr>
+        <!-- Super Admin -->
+        @if(auth()->user()->role == 'super_admin')
 
-    @if(auth()->user()->role == 'user')
+            <div class="card mt-4 shadow-sm">
+                <div class="card-body">
 
-    <a href="/voting">Mulai Voting</a>
+                    <h4>Menu Super Admin</h4>
 
-    <br><br>
+                    <a href="/admin" class="btn btn-danger">
+                        Kelola Admin
+                    </a>
 
-    @endif
+                    <a href="/voting-session" class="btn btn-warning">
+                        Kelola Sesi Voting
+                    </a>
 
-    <br><br>
+                </div>
+            </div>
 
-    <a href="/hasil">Lihat Hasil Voting</a>
-
-    <br><br>
-
-    <a href="/logout">Logout</a>
+        @endif
+    </div>
 
 </body>
+
 </html>

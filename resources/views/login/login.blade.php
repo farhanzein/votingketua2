@@ -11,4 +11,3 @@
     <button type="submit">Login</button>
 </form>
 
-<a href="/register">Daftar</a>

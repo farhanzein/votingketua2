@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Voting</title>
 </head>
+
 <body>
 
     <a href="/dashboard">Kembali</a>
@@ -14,7 +16,13 @@
     @if(session('error'))
         <p>{{ session('error') }}</p>
     @endif
+    @if(session('error'))
+        <p>{{ session('error') }}</p>
+    @endif
 
+    @if(session('success'))
+        <p>{{ session('success') }}</p>
+    @endif
     @foreach($kandidat as $k)
 
         <hr>
@@ -36,4 +44,5 @@
     @endforeach
 
 </body>
+
 </html>
