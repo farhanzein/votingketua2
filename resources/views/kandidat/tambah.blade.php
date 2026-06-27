@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link href="/css/kandidat.css" rel="stylesheet">
+    >
 </head>
 
 <body>
@@ -54,10 +55,10 @@
                 {{-- Foto --}}
                 <div class="form-group">
                     <label>Foto Kandidat</label>
-                    <div class="upload-area" id="uploadArea" onclick="document.getElementById('foto').click()" style="position:relative; height:250px; padding:0; overflow:hidden;">
+                    <div class="upload-area" id="uploadArea" onclick="document.getElementById('foto').click()"
+                        style="position:relative; height:250px; padding:0; overflow:hidden; cursor:grab;">
                         <img id="preview" src="" alt=""
-                            style="display:none; width:100%; height:100%; border-radius:8px; object-fit:cover; position:absolute; top:0; left:0;">
-
+                            style="display:none; position:absolute; cursor:grab; user-select:none;">
                         <div id="uploadPlaceholder">
                             <i class="bi bi-cloud-arrow-up"></i>
                             <p>Klik untuk upload foto</p>
@@ -65,7 +66,6 @@
                         </div>
                     </div>
 
-                    {{-- Tombol ganti foto, muncul setelah upload --}}
                     <button type="button" id="btnGanti" onclick="document.getElementById('foto').click()"
                         style="display:none; margin-top:0.5rem; background:none; border:1.5px solid #e5e7eb; border-radius:8px; padding:0.35rem 0.875rem; font-size:0.82rem; color:#374151; cursor:pointer;">
                         <i class="bi bi-arrow-repeat"></i> Ganti Foto
@@ -131,7 +131,38 @@
             reader.readAsDataURL(file);
         }
     </script>
+    <script src="/sweetalert/sweetalert2.all.min.js"></script>
+<script>
+    @if(session('success'))
+        Swal.fire({
+            title: 'Berhasil!',
+            text: '{{ session('success') }}',
+            icon: 'success',
+            confirmButtonColor: '#2563eb',
+            confirmButtonText: 'OK'
+        });
+    @endif
 
+    function konfirmasiHapus(e, url, nama) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Hapus Kandidat?',
+            text: nama + ' akan dihapus permanen!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#dc2626',
+            cancelButtonColor: '#6b7280',
+            confirmButtonText: 'Ya, Hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = url;
+            }
+        });
+    }
+</script>
+</body>
+</html>
 </body>
 
 </html>

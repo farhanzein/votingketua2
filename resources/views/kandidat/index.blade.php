@@ -84,12 +84,10 @@
                                 <p class="info-text">{{ $k->misi }}</p>
                             </div>
 
-                            <div class="kandidat-actions">
-                                <a href="/kandidat/hapus/{{ $k->id }}" class="btn-hapus"
-                                    onclick="return confirm('Yakin hapus kandidat {{ $k->nama }}?')">
-                                    <i class="bi bi-trash"></i> Hapus
-                                </a>
-                            </div>
+                            <a href="#" class="btn-hapus"
+                                onclick="konfirmasiHapus(event, '/kandidat/hapus/{{ $k->id }}', '{{ $k->nama }}')">
+                                <i class="bi bi-trash"></i> Hapus
+                            </a>
                         </div>
 
                     </div>
@@ -100,6 +98,37 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/sweetalert/sweetalert2.all.min.js"></script>
+    <script>
+
+        @if(session('success'))
+            Swal.fire({
+                title: 'Berhasil!',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                confirmButtonColor: '#2563eb',
+                confirmButtonText: 'OK'
+            });
+        @endif
+        function konfirmasiHapus(e, url, nama) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Hapus Kandidat?',
+                text: nama + ' akan dihapus permanen!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#dc2626',
+                cancelButtonColor: '#6b7280',
+                confirmButtonText: 'Ya, Hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = url;
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>

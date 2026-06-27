@@ -12,30 +12,38 @@ class AuthController extends Controller
     // tampil login
     public function showLogin()
     {
-        return view('login.login'); 
+        return view('login.login');
     }
 
     // proses login
     public function login(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
+{
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required'
+    ]);
 
-        $data = $request->only('email', 'password');
+    $data = $request->only('email', 'password');
 
-        if (Auth::attempt($data)) {
+    if (Auth::attempt($data)) {
+        $role = Auth::user()->role;
+
+        if ($role == 'voter') {
+            return redirect('/dashboard');
+        } elseif ($role == 'admin') {
+            return redirect('/dashboard');
+        } elseif ($role == 'super_admin') {
             return redirect('/dashboard');
         }
-
-        return back()->with('error', 'Email atau password salah');
     }
+
+    return back()->with('error', 'Email atau password salah');
+}
 
     // tampil register
     public function showRegister()
     {
-        return view('register.register'); 
+        return view('register.register');
     }
 
     // proses register
@@ -51,7 +59,7 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => 'user',
+            'role' => 'voter', // ← ganti dari 'user' ke 'voter'
             'hak_suara' => 1
         ]);
 
@@ -65,5 +73,5 @@ class AuthController extends Controller
         return redirect('/');
     }
 
-    
+
 }

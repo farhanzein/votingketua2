@@ -39,7 +39,7 @@ class KandidatController extends Controller
             'misi' => $request->misi,
         ]);
 
-        return redirect('/kandidat');
+        return redirect('/kandidat')->with('success', 'Kandidat berhasil ditambahkan!');
     }
 
     // hapus kandidat

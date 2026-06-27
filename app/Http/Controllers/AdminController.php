@@ -30,13 +30,13 @@ class AdminController extends Controller
             'hak_suara' => 0
         ]);
 
-        return redirect('/admin');
+        return redirect('/admin')->with('success', 'Admin berhasil ditambahkan!');
     }
 
     public function destroy($id)
     {
         User::find($id)->delete();
 
-        return redirect('/admin');
+        return redirect('/admin')->with('success', 'Admin berhasil dihapus!');
     }
 }

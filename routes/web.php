@@ -43,3 +43,6 @@ Route::get('/voting-session', [VotingSessionController::class, 'index']);
 Route::post('/voting-session/store', [VotingSessionController::class, 'store']);
 #hasilvoting
 Route::get('/hasil', [VotingController::class, 'hasil']);
+#loginadmin
+Route::get('/admin/login', [AuthController::class, 'showAdminLogin']);
+Route::post('/admin/login', [AuthController::class, 'adminLogin']);

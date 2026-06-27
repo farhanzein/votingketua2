@@ -30,7 +30,7 @@ class VoterController extends Controller
             'hak_suara' => 1
         ]);
 
-        return redirect('/voter');
+        return redirect('/voter')->with('success', 'Voter berhasil ditambahkan!');
     }
 
     public function destroy($id)

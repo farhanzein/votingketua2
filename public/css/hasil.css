@@ -1,0 +1,277 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background: #f3f4f6;
+    font-family: sans-serif;
+    min-height: 100vh;
+}
+
+.navbar {
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 0.875rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #111827;
+}
+
+.nav-logo { position: relative; width: 32px; height: 32px; }
+
+.nav-logo-red {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 22px; height: 22px;
+    background: #dc2626;
+    border-radius: 5px;
+}
+
+.nav-logo-blue {
+    position: absolute;
+    top: 0; right: 0;
+    width: 20px; height: 20px;
+    background: #2563eb;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-back {
+    border: 1.5px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 0.4rem 0.875rem;
+    font-size: 0.85rem;
+    color: #374151;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: all 0.15s;
+}
+
+.btn-back:hover {
+    background: #f3f4f6;
+    color: #111827;
+}
+
+.container {
+    max-width: 680px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.page-header {
+    margin-bottom: 1.25rem;
+}
+
+.page-header h1 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.page-header p {
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-top: 0.2rem;
+}
+
+/* Total suara */
+.stat-total {
+    background: #2563eb;
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    margin-bottom: 1.25rem;
+    color: white;
+}
+
+.stat-total i {
+    font-size: 1.75rem;
+    opacity: 0.9;
+}
+
+.stat-total p {
+    font-size: 0.8rem;
+    opacity: 0.85;
+    margin: 0;
+}
+
+.stat-total h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Hasil list */
+.hasil-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+}
+
+.hasil-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    position: relative;
+    border: 1.5px solid transparent;
+    transition: all 0.15s;
+}
+
+.hasil-card.winner {
+    border-color: #fbbf24;
+    background: #fffbeb;
+}
+
+.winner-badge {
+    position: absolute;
+    top: -1px;
+    right: 16px;
+    background: #f59e0b;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 0 0 8px 8px;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.hasil-left {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    flex: 1;
+    min-width: 0;
+}
+
+.hasil-foto {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #f3f4f6;
+    flex-shrink: 0;
+}
+
+.hasil-foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.foto-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.foto-placeholder i {
+    font-size: 1.5rem;
+    color: #d1d5db;
+}
+
+.hasil-info h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+}
+
+
+.hasil-info p {
+    font-size: 0.78rem;
+    color: #6b7280;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 280px;
+}
+
+/* Suara count */
+.hasil-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.4rem;
+    flex-shrink: 0;
+    min-width: 120px;
+}
+
+.suara-count {
+    display: flex;
+    align-items: baseline;
+    gap: 0.3rem;
+}
+
+.suara-count .angka {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.suara-count .label {
+    font-size: 0.78rem;
+    color: #6b7280;
+}
+
+.progress-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 6px;
+    background: #e5e7eb;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #2563eb;
+    border-radius: 999px;
+    transition: width 0.6s ease;
+}
+
+.progress-fill.winner {
+    background: #f59e0b;
+}
+
+.persen {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #6b7280;
+    min-width: 32px;
+    text-align: right;
+}
+
+@media (max-width: 500px) {
+    .hasil-card { flex-direction: column; align-items: flex-start; }
+    .hasil-right { width: 100%; align-items: flex-start; }
+    .progress-wrap { width: 100%; }
+}
